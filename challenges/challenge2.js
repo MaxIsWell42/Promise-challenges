@@ -11,12 +11,12 @@
  * 
  * 2. What happens if greet() fails? Make it fail by changing 'name' to a number
  *    instead of a string. What happens? Does uppercaser() still run?
- * 
+ * It will print out "Recieved an Error!". uppercaser() does not still run. 
  * 
  * 3. What happens if greet() succeeds and uppercaser() fails? Modify your code
  *    to achieve this result by changing the values of 'name' and 'my_str' and
  *    run the code again.
- * 
+ * greet() still runs but uppercaser() prints out the error message. 
  * 
  * 4. Write a method that takes a string as input and returns the input string
  *    with a space added between each character. E.g. 'foo' -> 'f o o'
@@ -64,8 +64,27 @@ function uppercaser(str) {
     });
 }
 
-name = 'Ducky'
-my_str = 'Make School is Awesome!!!'
+/**
+ * Returns the string with spaces in between each character. I.E. "foo" -> "f o o"
+ * @param {*} name The string to add spaces to.
+ */
+function spacer(str) {
+    return new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        if (typeof str === 'string') { 
+          resolve(str.split('').join(' '));
+        } else {
+          reject('Spaced line must be a string!');
+        }
+      }, 2000);
+    });
+}
+
+
+name = "Ducky"
+my_str = "Hello"
+spaceStr = "foo"
+
 
 greet(name)
     .then((greetResult) => {
@@ -74,6 +93,10 @@ greet(name)
     })
     .then((uppercaserResult) => {
         console.log(uppercaserResult)
+        return spacer(spaceStr)
+    })
+    .then((spacerResult) => {
+        console.log(spacerResult)
     }).catch((err) => {
         console.log('Received an error!')
         console.log(err);
