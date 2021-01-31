@@ -6,7 +6,8 @@
  * 1. Read over the code that follows. What will be printed to the console when
  *    it runs? Run the code using `node challenge2.js` and verify that your
  *    expectation was correct.
- * 
+ * I think that "Hello there, Ducky" and "MAKE SCHOOL IS AWESOME!!!" will be printed
+ * My assumption was correct.
  * 
  * 2. What happens if greet() fails? Make it fail by changing 'name' to a number
  *    instead of a string. What happens? Does uppercaser() still run?
