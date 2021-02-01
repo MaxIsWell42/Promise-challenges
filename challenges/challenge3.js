@@ -6,14 +6,15 @@
  * 1. Read over the `greetAndUppercase` function. This function uses
  *    Async/Await. How is this function different than a regular (non-async)
  *    function? What is its return type?
- * 
+ * Async functions know to expect the 'await' keyword, and return a promise rather than a value.
+ * The promise will then return a value when fulfilled.
  * 
  * 2. Uncomment block #1 and run the code using `node challenge3.js`. What is
  *    printed when we use `greetAndUppercase` like a regular function?
- * 
+ * It logs 'Promise { <pending> }'
  * 
  * 3. Uncomment block #2 and run the code again. What happens now?
- * 
+ * It logs that the promise is pending again, then returns "HELLO THERE, DUCKY"
  * 
  * 4. Write an asynchronous method 'spacer' that takes a string as input and 
  *    returns the input string with a space added between each character. You 
@@ -67,15 +68,24 @@ async function greetAndUppercase(name) {
     return uppercasedGreeting
 }
 
+async function spacer(str) {
+    string = await greetAndUppercase(str)
+    return str.split('').join(' ')
+}
+
 /* Uncomment me! #1 */
-// result = greetAndUppercase('Ducky')
-// console.log(result)
+result = greetAndUppercase('Ducky')
+console.log(result)
 
 /* Uncomment me! #2 */
-// greetAndUppercase('Ducky')
-//     .then(function(result) {
-//         console.log(result)
-//     })
-//     .catch(function(err) {
-//         console.log(err)
-//     })
+greetAndUppercase('Ducky')
+    .then(function(result) {
+        console.log(result)
+        return(spacer(result))
+    })
+    .then(function(spacerResult) {
+        console.log(spacerResult)
+    })
+    .catch(function(err) {
+        console.log(err)
+    })
